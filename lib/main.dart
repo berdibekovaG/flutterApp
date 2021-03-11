@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'FavoriteButton.dart';
+import 'SecondScreen.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -10,17 +13,17 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.grey,
       ),
-      home: _buildMainScreen(),
+      home: _BuildMainScreen(),
     );
   }
 }
 
-class _buildMainScreen extends StatelessWidget {
+class _BuildMainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildSearchBar(),
-      body: _buildImages(),
+      body: _buildImages(context = context),
     );
   }
 }
@@ -32,12 +35,12 @@ Widget _buildSearchBar() => PreferredSize(
         margin: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: Colors.grey[400],
+          color: Color(0xffF5F5F8),
         ),
         child: Padding(
           padding: const EdgeInsets.only(top: 7, bottom: 7, left: 17),
           child: Material(
-            color: Colors.grey[400],
+            color: Color(0xfff5f5f8),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
@@ -48,7 +51,7 @@ Widget _buildSearchBar() => PreferredSize(
                 Expanded(
                   child: TextField(
                     decoration: InputDecoration.collapsed(
-                      hintText: 'Search',
+                      hintText: ' Search',
                     ),
                     onChanged: (value) {},
                   ),
@@ -60,78 +63,42 @@ Widget _buildSearchBar() => PreferredSize(
       ),
     );
 
-Widget _buildImages() => ListView(
+Widget _buildImages(buildContext) => ListView(
+      padding: const EdgeInsets.only(bottom: 20, left: 20),
       children: <Widget>[
         Container(
-          child: Stack(
-              children: <Widget>[
-                Container(
-                child:
-                Image.asset('assets/images/pic1.png')),
-            Align(
-                alignment: FractionalOffset(0.4, 0.3),
-                child: _buildFavouriteCard(),
-                  ),
-              ],
+          margin: const EdgeInsets.only(bottom: 12.0),
+          child: _buildPhotoAndCard('assets/images/pic1.png'),
+        ),
+        GestureDetector(
+          child: Container(child: _buildPhotoAndCard('assets/images/pic2.png')),
+          onTap: () => Navigator.push(
+            buildContext,
+            MaterialPageRoute(builder: (context) => SecondScreen()),
           ),
-),
-        Container(
-          height: 338,
-          width: 340,
-          child: Image.asset('assets/images/pic2.png'),
         ),
       ],
     );
 
-Widget _buildFavouriteCard() => Container(
+Widget _buildFavouriteCard() => Flexible(
+      fit: FlexFit.tight,
+      child: Container(
+        width: 105,
         child: Card(
-      child: IconButton(
-        icon: FavouriteWidget(),
+          child: FavouriteWidget(),
+        ),
       ),
-    ));
+    );
 
-class FavouriteWidget extends StatefulWidget {
-  @override
-  _FavoriteWidgetState createState() => _FavoriteWidgetState();
-}
-
-class _FavoriteWidgetState extends State<FavouriteWidget> {
-  bool _isFavorited = false;
-  int _favoriteCount = 2157;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
+Widget _buildPhotoAndCard(String photo) => Stack(
       children: <Widget>[
         Container(
-          child: IconButton(
-            icon: (_isFavorited
-                ? Icon(Icons.favorite)
-                : Icon(Icons.favorite_border)),
-            onPressed: _toggleFavorite,
-            color: Colors.red[700],
-          ),
+          child: Image.asset(photo),
         ),
-        SizedBox(
-          width: 105,
-          height: 25,
-          child: Container(
-            child: Text('$_favoriteCount'),
-          ),
-        )
+        Align(
+          alignment: Alignment.topRight,
+// alignment: FractionalOffset(0.7, 0.3),
+          child: _buildFavouriteCard(),
+        ),
       ],
     );
-  }
-
-  void _toggleFavorite() {
-    setState(() {
-      if (_isFavorited) {
-        _isFavorited = false;
-        _favoriteCount -= 1;
-      } else {
-        _isFavorited = true;
-        _favoriteCount += 1;
-      }
-    });
-  }
-}
