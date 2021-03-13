@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'FavoriteButton.dart';
-import 'SecondScreen.dart';
+import 'favorite_button.dart';
+import 'screen_details.dart';
 
 void main() => runApp(MyApp());
 
@@ -90,15 +90,16 @@ Widget _buildFavouriteCard() => Flexible(
       ),
     );
 
-Widget _buildPhotoAndCard(String photo) => Stack(
+Widget _buildPhotoAndCard(String photo) =>
+Stack(
       children: <Widget>[
         Container(
           child: Image.asset(photo),
         ),
         Align(
           alignment: Alignment.topRight,
-// alignment: FractionalOffset(0.7, 0.3),
+          //alignment: FractionalOffset(0.7, 0.3),
           child: _buildFavouriteCard(),
-        ),
-      ],
+),
+],
     );

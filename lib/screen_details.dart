@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:test_app/main.dart';
-import 'FavoriteButton.dart';
+import 'favorite_button.dart';
 
 class SecondScreen extends StatelessWidget {
   @override
