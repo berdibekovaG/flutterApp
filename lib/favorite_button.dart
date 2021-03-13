@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class FavouriteWidget extends StatefulWidget {
   @override
-  _FavoriteWidgetState createState() => _FavoriteWidgetState();
+  FavoriteWidgetState createState() => FavoriteWidgetState();
 }
 
-class _FavoriteWidgetState extends State<FavouriteWidget> {
+class FavoriteWidgetState extends State<FavouriteWidget> {
   bool _isFavorited = false;
   int _favoriteCount = 2157;
 
@@ -17,9 +17,10 @@ class _FavoriteWidgetState extends State<FavouriteWidget> {
           Container(
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 IconButton(
-                  iconSize: 16,
+                  alignment: Alignment.centerLeft,
                   icon: (_isFavorited
                       ? Icon(Icons.favorite)
                       : Icon(Icons.favorite_border)),
@@ -28,7 +29,7 @@ class _FavoriteWidgetState extends State<FavouriteWidget> {
                 ),
                 SizedBox(
                   child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 10),
+                    padding: EdgeInsets.only(right: 10),
                     child: Text(
                       '$_favoriteCount',
                       style: TextStyle(
