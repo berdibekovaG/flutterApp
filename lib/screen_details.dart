@@ -25,27 +25,27 @@ class MainSecondScreen extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
         ),
-        leading: iconBack(context = context),
+        leading: _buildIconBack(context = context),
       ),
       body: ListView(
         children: <Widget>[
-          mainPhoto(),
-          imageDescription(),
-          userInfo(),
+          _buildMainPhoto(),
+          _buildPhotoDescription(),
+          _buildUserNameAndEmail(),
           FavouriteWidget(),
         ],
       ),
     );
   }
 
-  Widget mainPhoto() => Container(
+  Widget _buildMainPhoto() => Container(
         margin: const EdgeInsets.symmetric(vertical: 16, horizontal: 10),
         child: SizedBox(
           child: Image.asset('assets/images/pic3.png'),
         ),
       );
 
-  Widget iconBack(buildContext) => IconButton(
+  Widget _buildIconBack(buildContext) => IconButton(
         icon: Icon(Icons.arrow_back_ios),
         onPressed: () => {
           Navigator.push(
@@ -53,7 +53,7 @@ class MainSecondScreen extends StatelessWidget {
         },
       );
 
-  Widget imageDescription() => Container(
+  Widget _buildPhotoDescription() => Container(
         margin: const EdgeInsets.only(left: 10, right: 10),
         child: Text(
           'Beautiful girl in a yellow dress with a flower on her head in the summer in the forest',
@@ -69,7 +69,7 @@ class MainSecondScreen extends StatelessWidget {
         ),
       );
 
-  Widget userInfo() => Container(
+  Widget _buildUserNameAndEmail() => Container(
       margin: EdgeInsets.only(bottom: 17),
       child: Card(
           child: Column(

@@ -22,20 +22,20 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: searchBar(),
-      body: images(context = context),
+      appBar: _buildSearchBar(),
+      body: _buildImageList(context = context),
     );
   }
 
-  Widget searchBar() => PreferredSize(
-          preferredSize: Size.fromHeight(kToolbarHeight),
-       child: Container(
-         height: 37,
-         margin: const EdgeInsets.all(10),
-         decoration: BoxDecoration(
-           borderRadius: BorderRadius.circular(10),
-           color: Color(0xffF5F5F8),
-         ),
+  Widget _buildSearchBar() => PreferredSize(
+        preferredSize: Size.fromHeight(kToolbarHeight),
+        child: Container(
+          height: 37,
+          margin: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: Color(0xffF5F5F8),
+          ),
           child: Padding(
             padding: const EdgeInsets.only(top: 7, bottom: 7, left: 17),
             child: Material(
@@ -62,12 +62,11 @@ class MainScreen extends StatelessWidget {
         ),
       );
 
-  Widget images(buildContext) => ListView(
+  Widget _buildImageList(buildContext) => ListView(
         children: <Widget>[
           Container(
-           margin: const EdgeInsets.only(bottom: 12.0),
+            margin: const EdgeInsets.only(bottom: 12.0),
             child: Center(
-
               child: _buildPhotoAndCard('assets/images/pic1.png'),
             ),
           ),
@@ -83,7 +82,8 @@ class MainScreen extends StatelessWidget {
         ],
       );
 
-  Widget favoriteCard() => Card(
+  Widget _buildFavoriteCard() => Card(
+        borderOnForeground: false,
         child: FavouriteWidget(),
       );
 
@@ -95,7 +95,7 @@ class MainScreen extends StatelessWidget {
           Positioned(
             top: 0.0,
             right: 0.0,
-            child: favoriteCard(),
+            child: _buildFavoriteCard(),
           ),
         ],
       );
