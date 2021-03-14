@@ -32,7 +32,10 @@ class MainSecondScreen extends StatelessWidget {
           _buildMainPhoto(),
           _buildPhotoDescription(),
           _buildUserNameAndEmail(),
-          FavouriteWidget(),
+          Container(
+            margin: EdgeInsets.only(left: 10),
+            child: FavouriteWidget(),
+          ),
         ],
       ),
     );
@@ -71,7 +74,7 @@ class MainSecondScreen extends StatelessWidget {
 
   Widget _buildUserNameAndEmail() => Container(
       margin: EdgeInsets.only(bottom: 17),
-      child: Card(
+      child: Container(
           child: Column(
         children: [
           ListTile(
